@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Images - The Wedding Story</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+        }
+    </style>
+</head>
+
+<body class="bg-[#e9e4dd] text-gray-700">
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5 flex justify-between items-center">
+
+            <a href="index.html" class="heading-font text-white text-lg sm:text-xl md:text-2xl">Story Tree</a>
+
+            <!-- Desktop Nav -->
+            <nav
+                class="hidden md:flex space-x-6 lg:space-x-8 text-xs lg:text-sm uppercase tracking-widest text-gray-300">
+                <a href="stories.html" class="hover:text-white transition-colors duration-200">Stories</a>
+                <a href="photobooks.html" class="hover:text-white transition-colors duration-200">Photobooks</a>
+                <a href="images.html" class="hover:text-white transition-colors duration-200">Images</a>
+                <a href="films.html" class="hover:text-white transition-colors duration-200">Films</a>
+                <a href="pre-weddings.html" class="hover:text-white transition-colors duration-200">Pre-Weddings</a>
+                <a href="package.html" class="hover:text-white transition-colors duration-200">Package</a>
+                <a href="faq.html" class="hover:text-white transition-colors duration-200">FAQ</a>
+                <a href="contact.html" class="hover:text-white transition-colors duration-200">Contact</a>
+            </nav>
+
+            <!-- Mobile Button -->
+            <button id="menuBtn" class="md:hidden text-white text-xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="hidden md:hidden bg-black/95 px-6 py-8 space-y-6 text-center text-sm uppercase tracking-widest">
+            <a href="stories.html" class="block hover:text-white transition-colors duration-200">Stories</a>
+            <a href="photobooks.html" class="block hover:text-white transition-colors duration-200">Photobooks</a>
+            <a href="images.html" class="block hover:text-white transition-colors duration-200">Images</a>
+            <a href="films.html" class="block hover:text-white transition-colors duration-200">Films</a>
+            <a href="pre-weddings.html" class="block hover:text-white transition-colors duration-200">Pre-Weddings</a>
+            <a href="package.html" class="block hover:text-white transition-colors duration-200">Package</a>
+            <a href="faq.html" class="block hover:text-white transition-colors duration-200">FAQ</a>
+            <a href="contact.html" class="block hover:text-white transition-colors duration-200">Contact</a>
+        </div>
+    </header>
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!menuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <!-- MAIN CONTENT WITH PROPER PADDING FOR FIXED HEADER -->
+    <main class="pt-28 md:pt-32">
+        <!-- TOP DIVIDER -->
+        <div class="border-t border-gray-400 opacity-40 max-w-5xl mx-auto"></div>
+
+        <!-- TITLE -->
+        <section class="text-center py-12 md:py-16 px-4">
+            <h1 class="text-lg tracking-[0.6em] text-gray-600">IMAGES</h1>
+        </section>
+
+        <!-- BOTTOM DIVIDER -->
+        <div class="border-t border-gray-400 opacity-40 max-w-5xl mx-auto mb-12 md:mb-16"></div>
+
+        <!-- GALLERY GRID -->
+        <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 md:pb-28">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+
+                <!-- IMAGE ITEM -->
+                <div class="aspect-square overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                        class="w-full h-full object-cover">
+                </div>
+
+                <div class="aspect-square overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330"
+                        class="w-full h-full object-cover">
+                </div>
+
+                <div class="aspect-square overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74"
+                        class="w-full h-full object-cover">
+                </div>
+
+                <div class="aspect-square overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9"
+                        class="w-full h-full object-cover">
+                </div>
+
+                <div class="aspect-square overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce"
+                        class="w-full h-full object-cover">
+                </div>
+
+                <div class="aspect-square overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91"
+                        class="w-full h-full object-cover">
+                </div>
+
+                <div class="aspect-square overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d"
+                        class="w-full h-full object-cover">
+                </div>
+
+                <div class="aspect-square overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7"
+                        class="w-full h-full object-cover">
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-[#f7f3ef] py-12 sm:py-14 md:py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+
+                <!-- Social Icons -->
+                <div class="flex justify-center space-x-6 mb-6 text-gray-700 text-lg">
+                    <a href="#" aria-label="Instagram" class="hover:text-black transition-colors duration-200">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#" aria-label="YouTube" class="hover:text-black transition-colors duration-200">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+
+                    <a href="#" aria-label="Facebook" class="hover:text-black transition-colors duration-200">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                </div>
+
+                <!-- Copyright -->
+                <p class="text-center text-xs sm:text-sm text-gray-600">
+                    © 2026 Story Tree. All rights reserved.
+                </p>
+
+            </div>
+        </footer>
+    </main>
+
+</body>
+
+</html>

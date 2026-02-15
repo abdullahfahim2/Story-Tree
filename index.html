@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Story Tree</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Team Section Styles */
+        .team-member-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            height: 100%;
+            position: relative;
+        }
+
+        .team-member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-member-image {
+            height: 320px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .team-member-card:hover .team-member-image {
+            transform: scale(1.05);
+        }
+
+        .team-member-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(44, 85, 48, 0.9) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+        }
+
+        .team-member-card:hover .team-member-overlay {
+            opacity: 1;
+        }
+
+        .team-member-info {
+            background: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-member-role {
+            color: #2c5530;
+            font-weight: 500;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member-name {
+            color: #1a202c;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .team-member-bio {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .team-section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .team-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #2c5530, transparent);
+        }
+
+        /* Team Stats */
+        .team-stat {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #2c5530;
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #4a5568;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Social Links */
+        .team-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .team-social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #2c5530;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .team-social-link:hover {
+            background: #1e3b1a;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .text-responsive-hero {
+                font-size: 1.5rem;
+                letter-spacing: 0.15em;
+            }
+
+            .text-responsive-strip {
+                font-size: 2rem;
+                letter-spacing: 0.2em;
+            }
+
+            .py-responsive {
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+            }
+
+            .h-responsive-strip {
+                height: 250px;
+            }
+
+            .team-member-image {
+                height: 280px;
+            }
+
+            .team-member-name {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+            .text-responsive-hero {
+                font-size: 2rem;
+                letter-spacing: 0.2em;
+            }
+
+            .text-responsive-strip {
+                font-size: 3rem;
+                letter-spacing: 0.3em;
+            }
+
+            .team-member-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .px-responsive {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .section-padding-responsive {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .tracking-responsive {
+                letter-spacing: 0.25em;
+            }
+
+            .text-sm-responsive {
+                font-size: 0.875rem;
+            }
+
+            .text-base-responsive {
+                font-size: 1rem;
+            }
+
+            .team-stat {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .text-responsive-strip {
+                font-size: 3.5rem;
+            }
+
+            .section-padding-responsive {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white overflow-x-hidden">
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5 flex justify-between items-center">
+
+            <a href="index.html" class="heading-font text-white text-lg sm:text-xl md:text-2xl">Story Tree</a>
+
+            <!-- Desktop Nav -->
+            <nav
+                class="hidden md:flex space-x-6 lg:space-x-8 text-xs lg:text-sm uppercase tracking-widest text-gray-300">
+                <a href="stories.html" class="hover:text-white transition-colors duration-200">Stories</a>
+                <a href="photobooks.html" class="hover:text-white transition-colors duration-200">Photobooks</a>
+                <a href="images.html" class="hover:text-white transition-colors duration-200">Images</a>
+                <a href="films.html" class="hover:text-white transition-colors duration-200">Films</a>
+                <a href="pre-weddings.html" class="hover:text-white transition-colors duration-200">Pre-Weddings</a>
+                <a href="package.html" class="hover:text-white transition-colors duration-200">Package</a>
+                <a href="faq.html" class="hover:text-white transition-colors duration-200">FAQ</a>
+                <a href="contact.html" class="hover:text-white transition-colors duration-200">Contact</a>
+            </nav>
+
+            <!-- Mobile Button -->
+            <button id="menuBtn" class="md:hidden text-white text-xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="hidden md:hidden bg-black/95 px-6 py-8 space-y-6 text-center text-sm uppercase tracking-widest">
+            <a href="stories.html" class="block hover:text-white transition-colors duration-200">Stories</a>
+            <a href="photobooks.html" class="block hover:text-white transition-colors duration-200">Photobooks</a>
+            <a href="images.html" class="block hover:text-white transition-colors duration-200">Images</a>
+            <a href="films.html" class="block hover:text-white transition-colors duration-200">Films</a>
+            <a href="pre-weddings.html" class="block hover:text-white transition-colors duration-200">Pre-Weddings</a>
+            <a href="package.html" class="block hover:text-white transition-colors duration-200">Package</a>
+            <a href="faq.html" class="block hover:text-white transition-colors duration-200">FAQ</a>
+            <a href="contact.html" class="block hover:text-white transition-colors duration-200">Contact</a>
+        </div>
+    </header>
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!menuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <!-- SCROLL AREA -->
+    <section class="relative h-[150vh] sm:h-[180vh] md:h-[200vh]">
+
+        <!-- STICKY HERO -->
+        <div class="sticky top-0 h-screen overflow-hidden">
+
+            <!-- IMAGE -->
+            <div id="heroImage" class="absolute inset-0 bg-cover bg-center will-change-transform"
+                style="background-image:url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e');">
+            </div>
+
+            <!-- DARK OVERLAY -->
+            <div class="absolute inset-0 bg-black/60"></div>
+
+            <!-- TEXT CONTENT -->
+            <div class="relative z-10 h-full flex items-center justify-center">
+                <div class="text-center max-w-3xl px-4 sm:px-6 md:px-8">
+
+                    <p
+                        class="tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] text-2xl sm:text-3xl md:text-5xl text-gray-300 mb-4 sm:mb-6 text-responsive-hero">
+                        WELCOME
+                    </p>
+
+
+                    <div class="w-16 sm:w-20 md:w-24 h-px bg-white mx-auto mb-6 sm:mb-8"></div>
+
+                    <div class="space-y-4 sm:space-y-6">
+                        <p class="heading-font text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">
+                            Imagine waking up to a calling that lifts your soul and
+                            branches into stories filled with emotion, beauty, and truth.
+                        </p>
+
+                        <p class="heading-font text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">
+                            A world where moments grow into memories, roots deepen into love,
+                            and every story blooms with magic and meaning.
+                        </p>
+
+                        <p class="heading-font text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">
+                            This is our world. <br />
+                            <span class="italic">The Story Tree world.</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SCRIPT: VERTICAL SCROLL IMAGE -->
+    <script>
+        const heroImage = document.getElementById("heroImage");
+        const heroSection = document.querySelector("section");
+
+        function animateHero() {
+            const scrollTop = window.scrollY;
+            const sectionTop = heroSection.offsetTop;
+            const sectionHeight = heroSection.offsetHeight;
+            const windowHeight = window.innerHeight;
+
+            const progress =
+                (scrollTop - sectionTop) / (sectionHeight - windowHeight);
+
+            if (progress >= 0 && progress <= 1) {
+                const translateY = progress * (window.innerWidth < 768 ? 100 : 140);
+                const scale = 1 + progress * 0.08;
+
+                heroImage.style.transform = `
+                    translateY(${translateY}px)
+                    scale(${scale})
+                `;
+            }
+
+            requestAnimationFrame(animateHero);
+        }
+
+        // Debounce scroll events for performance
+        let isScrolling;
+        window.addEventListener('scroll', () => {
+            window.clearTimeout(isScrolling);
+            isScrolling = setTimeout(animateHero, 66); // ~15fps during scroll
+        }, false);
+
+        // Initial animation
+        animateHero();
+    </script>
+
+    <!-- QUOTE SECTION -->
+    <section class="bg-[#f7f3ee] text-[#8c8c8c]">
+        <!-- QUOTE -->
+        <div
+            class="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-28 text-center section-padding-responsive">
+            <p class="heading-font italic text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
+                "Without stories of love, our lives would pass by in the blink of an eye.<br class="hidden sm:block" />
+                These stories have the power to stop the world for a moment."
+            </p>
+
+            <p
+                class="mt-6 sm:mt-8 md:mt-10 tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] text-xs text-gray-400 uppercase tracking-responsive">
+                — Harpreet Bachher —
+            </p>
+        </div>
+    </section>
+
+    <!-- WHAT WE LOVE SECTION -->
+    <section class="bg-[#f7f3ee] text-[#8c8c8c]">
+
+        <!-- IMAGE STRIP -->
+        <div class="relative h-[250px] sm:h-[300px] md:h-[380px] overflow-hidden h-responsive-strip">
+
+            <!-- BACKGROUND IMAGE -->
+            <div id="loveBg"
+                class="absolute -inset-x-4 sm:-inset-x-0 -top-10 sm:-top-20 -bottom-10 sm:-bottom-20 bg-cover bg-center grayscale will-change-transform"
+                style="background-image:url('https://images.unsplash.com/photo-1520975916090-3105956dac38'); background-position: center 30%;">
+            </div>
+
+            <!-- DARK OVERLAY -->
+            <div class="absolute inset-0 bg-black/60"></div>
+
+            <!-- CENTER TEXT -->
+            <div class="relative z-10 h-full flex items-center justify-center px-4">
+                <p
+                    class="text-white tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] text-3xl sm:text-4xl md:text-5xl uppercase text-center text-responsive-strip">
+                    What We Love?
+                </p>
+            </div>
+
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div
+            class="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-28 text-center section-padding-responsive">
+
+            <div class="w-full h-px bg-gray-300 mb-8 sm:mb-12 md:mb-16"></div>
+
+            <div class="space-y-4 sm:space-y-6 md:space-y-8">
+                <p
+                    class="text-sm sm:text-base leading-relaxed sm:leading-loose text-gray-500 text-sm-responsive md:text-base">
+                    We are die-hard, hopeless romantics at heart and, photographers by qualification.
+                </p>
+
+                <p
+                    class="text-sm sm:text-base leading-relaxed sm:leading-loose text-gray-500 text-sm-responsive md:text-base">
+                    We love travelling all across the world to film the most important day of your life.
+                    Narrating your wedding story through our lenses is a passion we all share as a team.
+                </p>
+            </div>
+
+            <div class="w-full h-px bg-gray-300 mt-8 sm:mt-12 md:mt-16"></div>
+
+        </div>
+    </section>
+
+    <!-- WHAT WE BELIEVE SECTION -->
+    <section class="bg-[#f7f3ee] text-[#8c8c8c]">
+        <!-- IMAGE STRIP -->
+        <div class="relative h-[250px] sm:h-[300px] md:h-[380px] overflow-hidden h-responsive-strip">
+
+            <!-- BACKGROUND IMAGE -->
+            <div id="believeBg" class="absolute inset-0 bg-cover bg-center grayscale will-change-transform"
+                style="background-image:url('https://images.unsplash.com/photo-1520975916090-3105956dac38'); background-position: center 40%;">
+            </div>
+
+            <!-- DARK OVERLAY -->
+            <div class="absolute inset-0 bg-black/60"></div>
+
+            <!-- CENTER TEXT -->
+            <div class="relative z-10 h-full flex items-center justify-center px-4">
+                <p
+                    class="text-white tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] text-3xl sm:text-4xl md:text-5xl uppercase text-center text-responsive-strip">
+                    WHAT WE BELIEVE?
+                </p>
+            </div>
+
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div
+            class="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-28 text-center section-padding-responsive">
+
+            <div class="w-full h-px bg-gray-300 mb-8 sm:mb-12 md:mb-16"></div>
+
+            <div class="space-y-4 sm:space-y-6 md:space-y-8">
+                <p
+                    class="text-sm sm:text-base leading-relaxed sm:leading-loose text-gray-500 text-sm-responsive md:text-base">
+                    We believe that marriages are a promise of forever, synonymous to "...and they lived happily ever
+                    after."
+                </p>
+
+                <p
+                    class="text-sm sm:text-base leading-relaxed sm:leading-loose text-gray-500 text-sm-responsive md:text-base">
+                    We are here to encapsulate your "happily ever after" onto the screen just as magically as you had
+                    imagined.
+                </p>
+            </div>
+
+            <div class="w-full h-px bg-gray-300 mt-8 sm:mt-12 md:mt-16"></div>
+
+        </div>
+
+    </section>
+
+    <!-- WHAT WE DO SECTION -->
+    <section class="bg-[#f7f3ee] text-[#8c8c8c]">
+        <!-- IMAGE STRIP -->
+        <div class="relative h-[250px] sm:h-[300px] md:h-[380px] overflow-hidden h-responsive-strip">
+
+            <!-- BACKGROUND IMAGE -->
+            <div id="doBg" class="absolute inset-0 bg-cover bg-center grayscale will-change-transform"
+                style="background-image:url('https://images.unsplash.com/photo-1520975916090-3105956dac38'); background-position: center 35%;">
+            </div>
+
+            <!-- DARK OVERLAY -->
+            <div class="absolute inset-0 bg-black/60"></div>
+
+            <!-- CENTER TEXT -->
+            <div class="relative z-10 h-full flex items-center justify-center px-4">
+                <p
+                    class="text-white tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] text-3xl sm:text-4xl md:text-5xl uppercase text-center text-responsive-strip">
+                    WHAT WE DO?
+                </p>
+            </div>
+
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div
+            class="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-28 text-center section-padding-responsive">
+
+            <div class="w-full h-px bg-gray-300 mb-8 sm:mb-12 md:mb-16"></div>
+
+            <div class="space-y-4 sm:space-y-6 md:space-y-8">
+                <p
+                    class="text-sm sm:text-base leading-relaxed sm:leading-loose text-gray-500 text-sm-responsive md:text-base">
+                    We document handpicked elements and moments that are packed with love, to render your wedding film
+                    as
+                    illustrious as a contemporary cinematic record.
+                </p>
+
+                <p
+                    class="text-sm sm:text-base leading-relaxed sm:leading-loose text-gray-500 text-sm-responsive md:text-base">
+                    The footage is edited meticulously to provide you with an everlasting treasured testament of your
+                    dream
+                    story. The ageless quality of our images complements the energy of our films.
+                </p>
+            </div>
+
+            <div class="w-full h-px bg-gray-300 mt-8 sm:mt-12 md:mt-16"></div>
+
+        </div>
+
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section class="bg-[#f7f3ee] text-[#8c8c8c]">
+        <!-- TEAM STATS -->
+        <div class="bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="team-stat">
+                        <span class="stat-number">200+</span>
+                        <span class="stat-label">Weddings Captured</span>
+                    </div>
+                    <div class="team-stat">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Countries Covered</span>
+                    </div>
+                    <div class="team-stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Team Members</span>
+                    </div>
+                    <div class="team-stat">
+                        <span class="stat-number">12+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEAM MEMBERS -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-28">
+            <div class="text-center mb-12">
+                <h2 class="team-section-title heading-font text-3xl sm:text-4xl md:text-5xl text-gray-800">
+                    Meet Our Creative Team
+                </h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    A passionate group of storytellers, photographers, and cinematographers dedicated to capturing your
+                    love story
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="team-member-card">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                            alt="Harpreet Bachher" class="team-member-image">
+                        <div class="team-member-overlay">
+                            <p class="text-white text-sm leading-relaxed">
+                                Lead photographer with 12+ years of experience. Specializes in candid wedding
+                                photography and cinematic storytelling.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="team-member-info">
+                        <div class="team-member-role">Founder & Lead Photographer</div>
+                        <h3 class="team-member-name">Harpreet Bachher</h3>
+                        <p class="team-member-bio">
+                            Passionate storyteller who believes in capturing authentic emotions and turning them into
+                            timeless memories.
+                        </p>
+                        <div class="team-social-links">
+                            <a href="#" class="team-social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="team-social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-member-card">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                            alt="Raj Patel" class="team-member-image">
+                        <div class="team-member-overlay">
+                            <p class="text-white text-sm leading-relaxed">
+                                Cinematography expert specializing in documentary-style wedding films and aerial
+                                photography.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="team-member-info">
+                        <div class="team-member-role">Lead Cinematographer</div>
+                        <h3 class="team-member-name">Raj Patel</h3>
+                        <p class="team-member-bio">
+                            Creates cinematic wedding films that tell your unique love story through moving visuals and
+                            music.
+                        </p>
+                        <div class="team-social-links">
+                            <a href="#" class="team-social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="team-social-link">
+                                <i class="fab fa-vimeo-v"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-member-card">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                            alt="Maria Rodriguez" class="team-member-image">
+                        <div class="team-member-overlay">
+                            <p class="text-white text-sm leading-relaxed">
+                                Expert in portrait photography, pre-wedding shoots, and capturing intimate moments with
+                                artistic flair.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="team-member-info">
+                        <div class="team-member-role">Portrait Specialist</div>
+                        <h3 class="team-member-name">Maria Rodriguez</h3>
+                        <p class="team-member-bio">
+                            Specializes in creating stunning portraits that capture the personality and connection
+                            between couples.
+                        </p>
+                        <div class="team-social-links">
+                            <a href="#" class="team-social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="team-social-link">
+                                <i class="fab fa-behance"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const animatedBgs = [
+            document.getElementById("loveBg"),
+            document.getElementById("believeBg"),
+            document.getElementById("doBg"),
+            document.getElementById("teamBg")
+        ];
+
+        // Add parallax class to all background elements
+        animatedBgs.forEach(bg => {
+            if (bg) {
+                bg.style.willChange = 'transform';
+                bg.style.transition = 'transform 0.2s ease-out';
+            }
+        });
+
+        function animateStrip(bg) {
+            const wrapper = bg.parentElement;
+            const rect = wrapper.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const windowCenter = windowHeight / 2;
+            
+            // Calculate how far the section is from the center of the viewport
+            const sectionCenter = rect.top + (rect.height / 2);
+            const distanceFromCenter = windowCenter - sectionCenter;
+            
+            // Normalize the distance to a value between -1 and 1
+            const normalizedDistance = distanceFromCenter / windowHeight;
+            
+            // Parallax effect: background moves slower than the scroll
+            // This creates the illusion of depth
+            const parallaxFactor = 0.3; // Adjust this value to control parallax intensity
+            const translateY = normalizedDistance * (windowHeight * parallaxFactor);
+            
+            // Add subtle scale effect based on position
+            const scale = 1.05 + Math.abs(normalizedDistance) * 0.05;
+            
+            // Only apply transform if the section is in or near viewport
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                // Smooth easing for more natural movement
+                const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+                const easedTranslateY = translateY * easeOutCubic(Math.min(1, Math.abs(normalizedDistance) * 2));
+                
+                bg.style.transform = `
+                    translateY(${easedTranslateY}px)
+                    scale(${scale})
+                `;
+                
+                // Add slight opacity change for depth
+                const opacity = 0.7 + (1 - Math.abs(normalizedDistance)) * 0.3;
+                bg.style.opacity = Math.min(1, opacity);
+            } else {
+                // Reset when out of view
+                bg.style.transform = 'translateY(0px) scale(1.1)';
+                bg.style.opacity = '0.7';
+            }
+        }
+
+        function animateAllStrips() {
+            animatedBgs.forEach(bg => bg && animateStrip(bg));
+        }
+
+        // Optimized scroll handling with requestAnimationFrame
+        let ticking = false;
+        let lastScrollY = window.scrollY;
+
+        function onScroll() {
+            lastScrollY = window.scrollY;
+            
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    animateAllStrips();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        // Use passive scroll listener for better performance
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Also trigger on resize
+        window.addEventListener('resize', onScroll, { passive: true });
+
+        // Initial animation
+        animateAllStrips();
+        
+        // Pre-calculate positions for smoother animation
+        window.addEventListener('load', () => {
+            setTimeout(animateAllStrips, 100);
+        });
+    </script>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#f7f3ef] py-12 sm:py-14 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+
+            <!-- Social Icons -->
+            <div class="flex justify-center space-x-6 mb-6 text-gray-700 text-lg">
+                <a href="#" aria-label="Instagram" class="hover:text-black transition-colors duration-200">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="YouTube" class="hover:text-black transition-colors duration-200">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+                <a href="#" aria-label="Facebook" class="hover:text-black transition-colors duration-200">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+            </div>
+
+            <!-- Copyright -->
+            <p class="text-center text-xs sm:text-sm text-gray-600">
+                © 2026 Story Tree. All rights reserved.
+            </p>
+
+        </div>
+    </footer>
+
+    <script>
+        // Responsive font size adjustments
+        function adjustResponsiveText() {
+            const width = window.innerWidth;
+            const heroTexts = document.querySelectorAll('.text-responsive-hero');
+            const stripTexts = document.querySelectorAll('.text-responsive-strip');
+
+            if (width < 640) {
+                heroTexts.forEach(el => el.style.fontSize = '1.5rem');
+                stripTexts.forEach(el => el.style.fontSize = '2rem');
+            } else if (width < 768) {
+                heroTexts.forEach(el => el.style.fontSize = '2rem');
+                stripTexts.forEach(el => el.style.fontSize = '3rem');
+            } else if (width < 1024) {
+                stripTexts.forEach(el => el.style.fontSize = '3.5rem');
+            }
+        }
+
+        window.addEventListener('resize', adjustResponsiveText);
+        window.addEventListener('load', adjustResponsiveText);
+    </script>
+</body>
+
+</html>

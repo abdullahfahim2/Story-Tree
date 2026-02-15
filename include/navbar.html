@@ -1,0 +1,52 @@
+<header class="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5 flex justify-between items-center">
+
+        <a href="index.html" class="heading-font text-white text-lg sm:text-xl md:text-2xl">Story Tree</a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex space-x-6 lg:space-x-8 text-xs lg:text-sm uppercase tracking-widest text-gray-300">
+            <a href="stories.html" class="hover:text-white transition-colors duration-200">Stories</a>
+            <a href="photobooks.html" class="hover:text-white transition-colors duration-200">Photobooks</a>
+            <a href="images.html" class="hover:text-white transition-colors duration-200">Images</a>
+            <a href="films.html" class="hover:text-white transition-colors duration-200">Films</a>
+            <a href="pre-weddings.html" class="hover:text-white transition-colors duration-200">Pre-Weddings</a>
+            <a href="package.html" class="hover:text-white transition-colors duration-200">Package</a>
+            <a href="faq.html" class="hover:text-white transition-colors duration-200">FAQ</a>
+            <a href="contact.html" class="hover:text-white transition-colors duration-200">Contact</a>
+        </nav>
+
+        <!-- Mobile Button -->
+        <button id="menuBtn" class="md:hidden text-white text-xl focus:outline-none">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu"
+        class="hidden md:hidden bg-black/95 px-6 py-8 space-y-6 text-center text-sm uppercase tracking-widest">
+        <a href="stories.html" class="block hover:text-white transition-colors duration-200">Stories</a>
+        <a href="photobooks.html" class="block hover:text-white transition-colors duration-200">Photobooks</a>
+        <a href="images.html" class="block hover:text-white transition-colors duration-200">Images</a>
+        <a href="films.html" class="block hover:text-white transition-colors duration-200">Films</a>
+        <a href="pre-weddings.html" class="block hover:text-white transition-colors duration-200">Pre-Weddings</a>
+        <a href="package.html" class="block hover:text-white transition-colors duration-200">Package</a>
+        <a href="faq.html" class="block hover:text-white transition-colors duration-200">FAQ</a>
+        <a href="contact.html" class="block hover:text-white transition-colors duration-200">Contact</a>
+    </div>
+</header>
+
+<script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (event) => {
+        if (!menuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+            mobileMenu.classList.add('hidden');
+        }
+    });
+</script>

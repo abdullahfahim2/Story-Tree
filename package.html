@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Tree - Packages</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'story-green': '#2c5530',
+                        'story-dark-green': '#1e3b1a',
+                        'story-cream': '#f7f3ee',
+                        'story-gold': '#d4a574',
+                        'story-light': '#f7f3ef'
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .smooth-transition {
+            transition: all 0.3s ease;
+        }
+
+        .package-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+    </style>
+</head>
+
+<body class="bg-story-cream font-poppins text-gray-800">
+    
+    <header class="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5 flex justify-between items-center">
+
+            <a href="index.html" class="heading-font font-poppins text-white text-lg sm:text-xl md:text-2xl">Story Tree</a>
+
+            <!-- Desktop Nav -->
+            <nav
+                class="hidden md:flex space-x-6 lg:space-x-8 text-xs lg:text-sm uppercase tracking-widest text-gray-300">
+                <a href="stories.html" class="hover:text-white transition-colors duration-200">Stories</a>
+                <a href="photobooks.html" class="hover:text-white transition-colors duration-200">Photobooks</a>
+                <a href="images.html" class="hover:text-white transition-colors duration-200">Images</a>
+                <a href="films.html" class="hover:text-white transition-colors duration-200">Films</a>
+                <a href="pre-weddings.html" class="hover:text-white transition-colors duration-200">Pre-Weddings</a>
+                <a href="package.html" class="hover:text-white transition-colors duration-200">Package</a>
+                <a href="faq.html" class="hover:text-white transition-colors duration-200">FAQ</a>
+                <a href="contact.html" class="hover:text-white transition-colors duration-200">Contact</a>
+            </nav>
+
+            <!-- Mobile Button -->
+            <button id="menuBtn" class="md:hidden text-white text-xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="hidden md:hidden bg-black/95 px-6 py-8 space-y-6 text-center text-sm uppercase tracking-widest">
+            <a href="stories.html" class="block hover:text-white transition-colors duration-200">Stories</a>
+            <a href="photobooks.html" class="block hover:text-white transition-colors duration-200">Photobooks</a>
+            <a href="images.html" class="block hover:text-white transition-colors duration-200">Images</a>
+            <a href="films.html" class="block hover:text-white transition-colors duration-200">Films</a>
+            <a href="pre-weddings.html" class="block hover:text-white transition-colors duration-200">Pre-Weddings</a>
+            <a href="package.html" class="block hover:text-white transition-colors duration-200">Package</a>
+            <a href="faq.html" class="block hover:text-white transition-colors duration-200">FAQ</a>
+            <a href="contact.html" class="block hover:text-white transition-colors duration-200">Contact</a>
+        </div>
+    </header>
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!menuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-story-dark-green to-story-green text-white"
+        style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed'); background-size: cover; background-position: center;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl mb-6">Wedding Photography Packages</h1>
+                <p class="text-xl md:text-2xl text-gray-200 mb-8">Choose the perfect package to capture your love story
+                </p>
+                <div class="w-24 h-1 bg-story-gold mx-auto mb-8"></div>
+                <p class="text-lg text-gray-300">Every love story is unique. We offer customizable packages to ensure
+                    your wedding memories are preserved exactly as you envision.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="py-16 md:py-24 bg-story-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-3xl md:text-4xl lg:text-5xl text-gray-800 mb-6">Our Packages</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">From intimate ceremonies to grand celebrations, we
+                    have a package that fits your needs and budget</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                <!-- Essential Package -->
+                <div
+                    class="package-card bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl hover:-translate-y-4">
+                    <div class="bg-gradient-to-r from-story-green to-story-dark-green text-white p-8 text-center">
+                        <h3 class="font-playfair text-2xl md:text-3xl mb-2">Essential</h3>
+                        <p class="text-gray-200">For intimate weddings</p>
+                        <div class="my-6">
+                            <div class="font-playfair text-4xl md:text-5xl font-bold">$2,999</div>
+                            <div class="text-gray-200 mt-2">Starting Price</div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="space-y-4">
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-camera text-story-green mr-4"></i>
+                                <span class="flex-1">1 Lead Photographer</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-video text-story-green mr-4"></i>
+                                <span class="flex-1">1 Cinematographer</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-clock text-story-green mr-4"></i>
+                                <span class="flex-1">8 Hours Coverage</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-images text-story-green mr-4"></i>
+                                <span class="flex-1">500+ Edited Photos</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-film text-story-green mr-4"></i>
+                                <span class="flex-1">3-5 Minute Highlight Film</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-drone text-story-green mr-4"></i>
+                                <span class="flex-1">Aerial Drone Coverage</span>
+                                <span class="text-gray-400 text-sm line-through">Not Included</span>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-story-green text-white py-4 rounded-lg font-semibold mt-8 hover:bg-story-dark-green smooth-transition">Select
+                            Package</button>
+                    </div>
+                </div>
+
+                <!-- Premium Package -->
+                <div
+                    class="package-card bg-white rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl hover:-translate-y-4 border-4 border-story-green transform scale-105 relative">
+                    <div
+                        class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-story-gold text-gray-800 px-6 py-2 rounded-full font-semibold text-sm uppercase tracking-wider">
+                        Most Popular</div>
+                    <div class="bg-gradient-to-r from-story-green to-story-dark-green text-white p-8 text-center">
+                        <h3 class="font-playfair text-2xl md:text-3xl mb-2">Premium</h3>
+                        <p class="text-gray-200">Complete coverage</p>
+                        <div class="my-6">
+                            <div class="font-playfair text-4xl md:text-5xl font-bold">$4,999</div>
+                            <div class="text-gray-200 mt-2">Starting Price</div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="space-y-4">
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-camera text-story-green mr-4"></i>
+                                <span class="flex-1">2 Photographers</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-video text-story-green mr-4"></i>
+                                <span class="flex-1">2 Cinematographers</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-clock text-story-green mr-4"></i>
+                                <span class="flex-1">12 Hours Coverage</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-images text-story-green mr-4"></i>
+                                <span class="flex-1">800+ Edited Photos</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-film text-story-green mr-4"></i>
+                                <span class="flex-1">8-10 Minute Highlight Film</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-drone text-story-green mr-4"></i>
+                                <span class="flex-1">Aerial Drone Coverage</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-story-gold text-gray-800 py-4 rounded-lg font-semibold mt-8 hover:bg-amber-500 smooth-transition">Select
+                            Package</button>
+                    </div>
+                </div>
+
+                <!-- Luxury Package -->
+                <div
+                    class="package-card bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl hover:-translate-y-4">
+                    <div class="bg-gradient-to-r from-story-green to-story-dark-green text-white p-8 text-center">
+                        <h3 class="font-playfair text-2xl md:text-3xl mb-2">Luxury</h3>
+                        <p class="text-gray-200">Ultimate experience</p>
+                        <div class="my-6">
+                            <div class="font-playfair text-4xl md:text-5xl font-bold">$7,999</div>
+                            <div class="text-gray-200 mt-2">Starting Price</div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="space-y-4">
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-camera text-story-green mr-4"></i>
+                                <span class="flex-1">3 Photographers</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-video text-story-green mr-4"></i>
+                                <span class="flex-1">3 Cinematographers</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-clock text-story-green mr-4"></i>
+                                <span class="flex-1">Full Day Coverage</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-images text-story-green mr-4"></i>
+                                <span class="flex-1">1200+ Edited Photos</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-film text-story-green mr-4"></i>
+                                <span class="flex-1">15-20 Minute Documentary Film</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                            <div class="flex items-center py-3 border-b border-gray-100">
+                                <i class="fas fa-drone text-story-green mr-4"></i>
+                                <span class="flex-1">Aerial & Underwater Coverage</span>
+                                <span class="text-green-600 font-semibold text-sm">Included</span>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-story-green text-white py-4 rounded-lg font-semibold mt-8 hover:bg-story-dark-green smooth-transition">Select
+                            Package</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="text-gray-600">
+                    All packages include: High-resolution digital images, online gallery, personal consultation, and
+                    travel within 100km.
+                    <br>
+                    <a href="contact.html" class="text-story-green font-semibold hover:underline">Contact us</a> for
+                    custom packages and destination wedding quotes.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-3xl md:text-4xl lg:text-5xl text-gray-800 mb-6">Package Comparison</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">Compare all features at a glance to find the perfect
+                    fit for your special day</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="bg-gradient-to-r from-story-green to-story-dark-green text-white p-6">
+                    <h3 class="font-playfair text-2xl">Detailed Feature Comparison</h3>
+                </div>
+                <div class="divide-y divide-gray-100">
+                    <div class="grid grid-cols-1 md:grid-cols-4 p-6 hover:bg-gray-50">
+                        <div class="font-semibold text-gray-700 mb-2 md:mb-0">Photography Team</div>
+                        <div class="text-center">1 Photographer</div>
+                        <div class="text-center font-semibold text-story-green">2 Photographers</div>
+                        <div class="text-center">3 Photographers</div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 p-6 hover:bg-gray-50">
+                        <div class="font-semibold text-gray-700 mb-2 md:mb-0">Cinematography Team</div>
+                        <div class="text-center">1 Cinematographer</div>
+                        <div class="text-center font-semibold text-story-green">2 Cinematographers</div>
+                        <div class="text-center">3 Cinematographers</div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 p-6 hover:bg-gray-50">
+                        <div class="font-semibold text-gray-700 mb-2 md:mb-0">Coverage Hours</div>
+                        <div class="text-center">8 Hours</div>
+                        <div class="text-center font-semibold text-story-green">12 Hours</div>
+                        <div class="text-center">Full Day</div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 p-6 hover:bg-gray-50">
+                        <div class="font-semibold text-gray-700 mb-2 md:mb-0">Edited Photos</div>
+                        <div class="text-center">500+</div>
+                        <div class="text-center font-semibold text-story-green">800+</div>
+                        <div class="text-center">1200+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-16 md:py-24 bg-story-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-3xl md:text-4xl lg:text-5xl text-gray-800 mb-6">Our Process</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">From consultation to delivery, we ensure a seamless
+                    experience</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center p-6">
+                    <div
+                        class="w-16 h-16 bg-story-green text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                        1</div>
+                    <h3 class="font-playfair text-xl mb-4">Consultation</h3>
+                    <p class="text-gray-600">We discuss your vision, preferences, and create a customized plan</p>
+                </div>
+                <div class="text-center p-6">
+                    <div
+                        class="w-16 h-16 bg-story-green text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                        2</div>
+                    <h3 class="font-playfair text-xl mb-4">Planning</h3>
+                    <p class="text-gray-600">Detailed timeline creation and shot list preparation</p>
+                </div>
+                <div class="text-center p-6">
+                    <div
+                        class="w-16 h-16 bg-story-green text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                        3</div>
+                    <h3 class="font-playfair text-xl mb-4">Capture</h3>
+                    <p class="text-gray-600">Professional coverage of your wedding day with our expert team</p>
+                </div>
+                <div class="text-center p-6">
+                    <div
+                        class="w-16 h-16 bg-story-green text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                        4</div>
+                    <h3 class="font-playfair text-xl mb-4">Delivery</h3>
+                    <p class="text-gray-600">Careful editing and delivery of your beautiful memories</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-3xl md:text-4xl lg:text-5xl text-gray-800 mb-6">Frequently Asked Questions
+                </h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">Find answers to common questions about our packages
+                    and services</p>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-story-cream rounded-xl p-6 hover:shadow-md smooth-transition">
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleFAQ(1)">
+                        <h3 class="font-playfair text-xl font-semibold text-story-green">Can we customize a package?
+                        </h3>
+                        <i class="fas fa-chevron-down text-story-green smooth-transition" id="icon-1"></i>
+                    </div>
+                    <div class="mt-4 text-gray-600 hidden" id="answer-1">
+                        Absolutely! We understand that every wedding is unique. We offer customizable packages where you
+                        can add or remove services based on your specific needs and budget. Contact us for a
+                        personalized quote.
+                    </div>
+                </div>
+
+                <div class="bg-story-cream rounded-xl p-6 hover:shadow-md smooth-transition">
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleFAQ(2)">
+                        <h3 class="font-playfair text-xl font-semibold text-story-green">What's included in the "Edited
+                            Photos"?</h3>
+                        <i class="fas fa-chevron-down text-story-green smooth-transition" id="icon-2"></i>
+                    </div>
+                    <div class="mt-4 text-gray-600 hidden" id="answer-2">
+                        All packages include professionally edited high-resolution photos. Our editing process includes
+                        color correction, exposure adjustments, cropping, and basic retouching. You'll receive a mix of
+                        color and black & white images.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#f7f3ef] py-12 sm:py-14 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+
+            <!-- Social Icons -->
+            <div class="flex justify-center space-x-6 mb-6 text-gray-700 text-lg">
+                <a href="#" aria-label="Instagram" class="hover:text-black transition-colors duration-200">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="YouTube" class="hover:text-black transition-colors duration-200">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+                <a href="#" aria-label="Facebook" class="hover:text-black transition-colors duration-200">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+            </div>
+
+            <!-- Copyright -->
+            <p class="text-center text-xs sm:text-sm text-gray-600">
+                © 2026 Story Tree. All rights reserved.
+            </p>
+
+        </div>
+    </footer>
+
+    <script>
+        // FAQ toggle
+        function toggleFAQ(number) {
+            const answer = document.getElementById(`answer-${number}`);
+            const icon = document.getElementById(`icon-${number}`);
+
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+
+            // Add rotate-180 class dynamically
+            if (!document.getElementById('faq-style')) {
+                const style = document.createElement('style');
+                style.id = 'faq-style';
+                style.textContent = `.rotate-180 { transform: rotate(180deg); }`;
+                document.head.appendChild(style);
+            }
+        }
+
+        // Package selection
+        document.querySelectorAll('.package-card button').forEach(button => {
+            button.addEventListener('click', function () {
+                const packageName = this.closest('.package-card').querySelector('h3').textContent;
+                alert(`Thank you for selecting the ${packageName} package! We'll contact you shortly.`);
+            });
+        });
+    </script>
+</body>
+
+</html>

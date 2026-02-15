@@ -1,0 +1,77 @@
+# **"Story Tree" Wedding Website Theme Ideas**
+
+## **Core Theme Concept: "The Family Tree of Love"**
+
+### **Primary Color Palette:**
+- **Deep Bark Brown**: #3C2A1E (Primary background/navigation)
+- **Forest Green**: #2E4F2B (Accent color, buttons)
+- **Blossom Pink**: #F4C2C2 (Wedding/romantic accent)
+- **Cream/Off-White**: #F8F4E6 (Background/typography)
+- **Gold Leaf**: #D4AF37 (Highlights, metallic elements)
+- **Soil Brown**: #654321 (Secondary accents)
+
+### **Visual Motifs:**
+
+#### **1. Tree & Branch Elements:**
+- **Navigation Menu** as extending branches
+- **Logo** incorporating intertwined tree & wedding rings
+- **Section dividers** as vine or root patterns
+- **Family trees** showing how two families merge
+
+#### **2. Seasonal Wedding Imagery:**
+- **Spring**: Cherry blossoms, new leaves (engagement/pre-wedding)
+- **Summer**: Full, lush greenery (wedding season)
+- **Autumn**: Golden leaves, falling (harvest/mature love)
+- **Winter**: Bare branches with fairy lights (anniversary/winter weddings)
+
+#### **3. Symbolic Elements:**
+- **Roots** for "Our Foundation" or "How We Met"
+- **Branches** for "Our Journey Together"
+- **Leaves** representing family members/guests
+- **Fruit/Blossoms** for "Our Future" or "Children"
+- **Birds/Nests** for "Home" or "New Beginnings"
+
+### **Page-by-Page Theme Ideas:**
+
+#### **Homepage:** 
+"The Wedding Tree" - A growing tree with photos hanging like fruit
+
+#### **Our Story Page:** 
+"Two Roots, One Tree" - Showing two separate root systems growing into one tree
+
+#### **Gallery Page:** 
+"Leaves of Memory" - Photos arranged like leaves on branches
+
+#### **Wedding Details:**
+"Branching Out" - Information spreading like tree branches
+
+#### **RSVP/Guestbook:**
+"Add Your Leaf" - Guests add messages to digital leaves on the tree
+
+#### **Registry:**
+"Helping Our Tree Grow" - Gifts visualized as watering cans, sunlight, etc.
+
+### **Typography Style:**
+- **Headings**: Rustic, hand-drawn or calligraphy fonts
+- **Body Text**: Clean, readable serif fonts
+- **Script Elements**: Romantic cursive for quotes
+
+### **Animation/Motion Ideas:**
+- Gentle leaf fall in background
+- Branches growing as you scroll
+- Blossoms blooming on hover
+- Roots spreading at the footer
+
+### **Seasonal Variations (Optional):**
+Offer couples to choose their wedding season theme:
+- **Spring Romance**: Pastel pinks, soft greens, cherry blossoms
+- **Summer Love**: Vibrant greens, sunshine golds, full foliage
+- **Autumn Harvest**: Burgundy, burnt orange, golden yellows
+- **Winter Wonderland**: Evergreens, silver accents, bare elegant branches
+
+### **Special Touches:**
+- **Family Tree Integration**: Visualize how two families merge
+- **Timeline as Growth Rings**: Show relationship milestones as tree rings
+- **Love Notes on Leaves**: Share messages on digital leaves
+- **Interactive Tree Planting**: Plant a virtual tree for the couple
+

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pre-Weddings - Story Tree</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Video Play Button */
+        .video-play-button {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .video-play-button:hover {
+            background: white;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-play-button i {
+            color: #2c5530;
+            font-size: 1.5rem;
+            margin-left: 4px;
+        }
+
+        /* Couple Card Styles */
+        .couple-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            height: 500px;
+        }
+
+        .couple-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .couple-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .couple-card:hover .couple-image {
+            transform: scale(1.05);
+        }
+
+        .couple-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+            padding: 2rem;
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .couple-card:hover .couple-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .couple-location {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .couple-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-bottom: 1px solid white;
+            padding-bottom: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            border-bottom-color: transparent;
+        }
+
+        /* Tips Section */
+        .tips-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .tips-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .tips-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .tips-content {
+            padding: 2rem;
+        }
+
+        .tips-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #2c5530;
+            margin-bottom: 1rem;
+        }
+
+        .tips-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .video-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .video-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .video-controls a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .video-controls a:hover {
+            color: #2c5530;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .couple-card {
+                height: 400px;
+            }
+
+            .tips-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#f7f3ee] text-gray-800">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5 flex justify-between items-center">
+
+            <a href="index.html" class="heading-font text-white text-lg sm:text-xl md:text-2xl">Story Tree</a>
+
+            <!-- Desktop Nav -->
+            <nav
+                class="hidden md:flex space-x-6 lg:space-x-8 text-xs lg:text-sm uppercase tracking-widest text-gray-300">
+                <a href="stories.html" class="hover:text-white transition-colors duration-200">Stories</a>
+                <a href="photobooks.html" class="hover:text-white transition-colors duration-200">Photobooks</a>
+                <a href="images.html" class="hover:text-white transition-colors duration-200">Images</a>
+                <a href="films.html" class="hover:text-white transition-colors duration-200">Films</a>
+                <a href="pre-weddings.html"
+                    class="hover:text-white transition-colors duration-200 font-semibold text-white">Pre-Weddings</a>
+                <a href="package.html" class="hover:text-white transition-colors duration-200">Package</a>
+                <a href="faq.html" class="hover:text-white transition-colors duration-200">FAQ</a>
+                <a href="contact.html" class="hover:text-white transition-colors duration-200">Contact</a>
+            </nav>
+
+            <!-- Mobile Button -->
+            <button id="menuBtn" class="md:hidden text-white text-xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="hidden md:hidden bg-black/95 px-6 py-8 space-y-6 text-center text-sm uppercase tracking-widest">
+            <a href="stories.html" class="block hover:text-white transition-colors duration-200">Stories</a>
+            <a href="photobooks.html" class="block hover:text-white transition-colors duration-200">Photobooks</a>
+            <a href="images.html" class="block hover:text-white transition-colors duration-200">Images</a>
+            <a href="films.html" class="block hover:text-white transition-colors duration-200">Films</a>
+            <a href="pre-weddings.html"
+                class="block hover:text-white transition-colors duration-200 font-semibold text-white">Pre-Weddings</a>
+            <a href="package.html" class="block hover:text-white transition-colors duration-200">Package</a>
+            <a href="faq.html" class="block hover:text-white transition-colors duration-200">FAQ</a>
+            <a href="contact.html" class="block hover:text-white transition-colors duration-200">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="relative h-[70vh] md:h-[80vh] bg-black">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80"
+                alt="Pre-Wedding Couple" class="w-full h-full object-cover opacity-70">
+        </div>
+
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/50"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 h-full flex items-center justify-center">
+            <div class="text-center max-w-4xl px-4">
+                <h1 class="heading-font text-white text-4xl md:text-6xl lg:text-7xl mb-6 md:mb-8">
+                    STORY TREE PRE-WEDDINGS
+                </h1>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mb-6">
+                    <p class="text-white text-lg md:text-xl">Story Tree Enhance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Couples Grid -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Couple 1 -->
+                <div class="couple-card">
+                    <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-4.0.3&auto=format&fit=crop&w=1171&q=80"
+                        alt="Raina & Ankush" class="couple-image">
+                    <div class="couple-overlay">
+                        <div class="couple-location">London, UK</div>
+                        <h3 class="couple-name">RAINA & ANKUSH</h3>
+                        <a href="pre-details.html" class="read-more-btn">READ MORE</a>
+                    </div>
+                </div>
+
+                <!-- Couple 2 -->
+                <div class="couple-card">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Preharse & Dillon" class="couple-image">
+                    <div class="couple-overlay">
+                        <div class="couple-location">Malibu, California</div>
+                        <h3 class="couple-name">PREHARSE & DILLON</h3>
+                        <a href="pre-details.html" class="read-more-btn">READ MORE</a>
+                    </div>
+                </div>
+
+                <!-- Couple 4 -->
+                <div class="couple-card">
+                    <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Priyal & Devansh" class="couple-image">
+                    <div class="couple-overlay">
+                        <div class="couple-location">Jaipur, India</div>
+                        <h3 class="couple-name">PRIYAL & DEVANSH</h3>
+                        <a href="pre-details.html" class="read-more-btn">READ MORE</a>
+                    </div>
+                </div>
+
+                <!-- Couple 5 -->
+                <div class="couple-card">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80"
+                        alt="Bianca & Dev" class="couple-image">
+                    <div class="couple-overlay">
+                        <div class="couple-location">Bali, Indonesia</div>
+                        <h3 class="couple-name">BIANCA & DEV</h3>
+                        <a href="pre-details.html" class="read-more-btn">READ MORE</a>
+                    </div>
+                </div>
+
+                <!-- Couple 6 -->
+                <div class="couple-card">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Simran & Hamit" class="couple-image">
+                    <div class="couple-overlay">
+                        <div class="couple-location">Paris, France</div>
+                        <h3 class="couple-name">SIMRAN & HAMIT</h3>
+                        <a href="pre-details.html" class="read-more-btn">READ MORE</a>
+                    </div>
+                </div>
+
+                <!-- Couple 7 -->
+                <div class="couple-card">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Vyshnavi & Yashraj" class="couple-image">
+                    <div class="couple-overlay">
+                        <div class="couple-location">Goa, India</div>
+                        <h3 class="couple-name">VYSHNAVI & YASHRAJ</h3>
+                        <a href="pre-details.html" class="read-more-btn">READ MORE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="py-16 md:py-24 bg-[#f7f3ee]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Video Section -->
+                <div class="relative">
+                    <div class="relative rounded-lg overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                            alt="Pre-Wedding Shoot Tips" class="w-full h-[400px] object-cover">
+                        <div class="video-play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+
+                        <!-- Video Timer -->
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <div class="text-white">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm">0:37 / 2:48</span>
+                                    <div class="flex items-center space-x-4">
+                                        <a href="#" class="text-white hover:text-gray-300">
+                                            <i class="far fa-clock"></i>
+                                        </a>
+                                        <a href="#" class="text-white hover:text-gray-300">
+                                            <i class="fas fa-share"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-white/30 h-1 rounded-full">
+                                    <div class="w-1/4 bg-white h-1 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tips Content -->
+                <div>
+                    <h2 class="heading-font text-4xl md:text-5xl text-gray-800 mb-6">
+                        PRE-WEDDINGS
+                    </h2>
+                    <div class="mb-8">
+                        <h3 class="heading-font text-2xl md:text-3xl text-gray-700 mb-4">
+                            10 tips for great pre-wedding shoots
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            Capture your love story with these essential tips for creating unforgettable pre-wedding
+                            photographs.
+                            From location selection to natural posing, we'll guide you through the process.
+                        </p>
+                    </div>
+
+                    <!-- Tips List -->
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <span class="text-2xl heading-font text-gray-400 mr-4">01</span>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Choose Meaningful Locations</h4>
+                                <p class="text-sm text-gray-600">Select places that tell your unique story as a couple.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-2xl heading-font text-gray-400 mr-4">02</span>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Be Natural & Relaxed</h4>
+                                <p class="text-sm text-gray-600">The best photos come from genuine moments and emotions.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-2xl heading-font text-gray-400 mr-4">03</span>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Consider Golden Hour</h4>
+                                <p class="text-sm text-gray-600">Early morning or late afternoon light creates magical
+                                    photos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <!-- <section class="py-16 md:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="heading-font text-4xl md:text-5xl text-gray-800 mb-6">
+                Ready to Tell Your Story?
+            </h2>
+            <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+                Let's create beautiful pre-wedding memories that you'll cherish forever.
+                Our team of photographers and cinematographers will capture your love story in the most beautiful way.
+            </p>
+            <a href="contact.html"
+                class="inline-block bg-[#2c5530] text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-[#1e3b1a] transition-colors duration-300">
+                Book Your Pre-Wedding Shoot
+            </a>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer class="bg-[#f7f3ef] py-12 sm:py-14 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+
+            <!-- Social Icons -->
+            <div class="flex justify-center space-x-6 mb-6 text-gray-700 text-lg">
+                <a href="#" aria-label="Instagram" class="hover:text-black transition-colors duration-200">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="YouTube" class="hover:text-black transition-colors duration-200">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+                <a href="#" aria-label="Facebook" class="hover:text-black transition-colors duration-200">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+            </div>
+
+            <!-- Copyright -->
+            <p class="text-center text-xs sm:text-sm text-gray-600">
+                © 2026 Story Tree. All rights reserved.
+            </p>
+
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!menuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Video Play Button
+        const playButton = document.querySelector('.video-play-button');
+        if (playButton) {
+            playButton.addEventListener('click', function () {
+                // In a real implementation, this would trigger a video modal
+                alert('Video player would open here. In production, this would launch a video modal.');
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

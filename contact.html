@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us – Story Tree</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Poppins:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ENSURE CONTENT IS ABOVE FLOATING ELEMENTS */
+        header,
+        section {
+            z-index: 40;
+            position: relative;
+        }
+
+        /* ORIGINAL STYLES (PRESERVED) */
+        header nav a::after,
+        #mobileMenu a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -6px;
+            width: 0;
+            height: 1px;
+            background: white;
+            transform: translateX(-50%);
+            transition: width .35s ease;
+        }
+
+        header nav a:hover::after,
+        #mobileMenu a:hover::after {
+            width: 70%;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f3ee;
+            color: #333;
+        }
+
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .form-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c5530;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .required-field::after {
+            content: "*";
+            color: #dc2626;
+            margin-left: 2px;
+        }
+
+        input,
+        textarea,
+        select {
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #2c5530;
+            box-shadow: 0 0 0 3px rgba(44, 85, 48, 0.1);
+            outline: none;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            margin-right: 0.5rem;
+            width: 1.1rem;
+            height: 1.1rem;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background-color: #2c5530;
+            color: white;
+            padding: 0.75rem 2.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .submit-btn:hover {
+            background-color: #1e3b1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 59, 26, 0.2);
+        }
+
+        .contact-info {
+            background-color: #2c5530;
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 3rem;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 2rem;
+        }
+
+        .form-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #2c5530;
+            margin-bottom: 1rem;
+        }
+
+        .form-header p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-section {
+                padding: 1.5rem;
+            }
+
+            .form-header h1 {
+                font-size: 2rem;
+            }
+
+            .checkbox-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .contact-info {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#f7f3ee] text-[#8c8c8c]">
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5 flex justify-between items-center">
+
+            <a href="index.html" class="heading-font text-white text-lg sm:text-xl md:text-2xl">Story Tree</a>
+
+            <!-- Desktop Nav -->
+            <nav
+                class="hidden md:flex space-x-6 lg:space-x-8 text-xs lg:text-sm uppercase tracking-widest text-gray-300">
+                <a href="stories.html" class="hover:text-white transition-colors duration-200">Stories</a>
+                <a href="photobooks.html" class="hover:text-white transition-colors duration-200">Photobooks</a>
+                <a href="images.html" class="hover:text-white transition-colors duration-200">Images</a>
+                <a href="films.html" class="hover:text-white transition-colors duration-200">Films</a>
+                <a href="pre-weddings.html" class="hover:text-white transition-colors duration-200">Pre-Weddings</a>
+                <a href="package.html" class="hover:text-white transition-colors duration-200">Package</a>
+                <a href="faq.html" class="hover:text-white transition-colors duration-200">FAQ</a>
+                <a href="contact.html" class="hover:text-white transition-colors duration-200">Contact</a>
+            </nav>
+
+            <!-- Mobile Button -->
+            <button id="menuBtn" class="md:hidden text-white text-xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="hidden md:hidden bg-black/95 px-6 py-8 space-y-6 text-center text-sm uppercase tracking-widest">
+            <a href="stories.html" class="block hover:text-white transition-colors duration-200">Stories</a>
+            <a href="photobooks.html" class="block hover:text-white transition-colors duration-200">Photobooks</a>
+            <a href="images.html" class="block hover:text-white transition-colors duration-200">Images</a>
+            <a href="films.html" class="block hover:text-white transition-colors duration-200">Films</a>
+            <a href="pre-weddings.html" class="block hover:text-white transition-colors duration-200">Pre-Weddings</a>
+            <a href="package.html" class="block hover:text-white transition-colors duration-200">Package</a>
+            <a href="faq.html" class="block hover:text-white transition-colors duration-200">FAQ</a>
+            <a href="contact.html" class="block hover:text-white transition-colors duration-200">Contact</a>
+        </div>
+    </header>
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!menuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <!-- MAIN CONTENT WRAPPER WITH TOP PADDING FOR FIXED HEADER -->
+    <main class="pt-28 md:pt-32">
+        <!-- DIVIDER -->
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="h-px bg-gray-300"></div>
+        </div>
+
+        <!-- CONTACT CONTENT -->
+        <section class="max-w-4xl mx-auto px-6 py-12 md:py-16 text-center">
+
+            <!-- TITLE -->
+            <h1 class="tracking-[0.4em] text-lg uppercase mb-10 md:mb-12">
+                Contact Us
+            </h1>
+
+            <div class="h-px bg-gray-300 mb-12 md:mb-16"></div>
+
+            <!-- INTRO TEXT -->
+            <div class="space-y-6 text-sm leading-loose max-w-3xl mx-auto">
+                <p>
+                    We love making films and are honoured to be considered by you to document your wedding story for
+                    posterity.
+                </p>
+
+                <p>
+                    This website best showcases our work – every film, every image and every song here represents who we
+                    are
+                    and what we stand for.
+                </p>
+
+                <p>
+                    If you would like your wedding story to be filmed by us, grab a cup of coffee and write in every
+                    detail
+                    you can think of. Tell us your story.
+                </p>
+            </div>
+
+            <!-- SIGNATURE -->
+            <div class="mt-16 md:mt-20 space-y-4">
+                <p class="heading-font italic text-base text-gray-500">
+                    Harpreet Bachher
+                </p>
+                <p class="text-xs tracking-[0.25em] uppercase">
+                    Founder, The Wedding Story
+                </p>
+            </div>
+        </section>
+
+        <div class="min-h-screen bg-[#f7f3ee]">
+            <!-- Form Header -->
+            <div class="form-header">
+                <h1>Your Wedding Story Awaits</h1>
+                <p>Tell us about your love story and wedding plans. We'll create memories that last forever.</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 pb-16 md:pb-20">
+                <!-- Main Form -->
+                <form id="weddingInquiryForm" class="space-y-6">
+                    <!-- BRIDE Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">BRIDE</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="brideFirstName"
+                                    class="block text-sm font-medium text-gray-700 mb-1 required-field">
+                                    First Name
+                                </label>
+                                <input type="text" id="brideFirstName" name="brideFirstName" required
+                                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition duration-200">
+                            </div>
+                            <div>
+                                <label for="brideLastName"
+                                    class="block text-sm font-medium text-gray-700 mb-1 required-field">
+                                    Last Name
+                                </label>
+                                <input type="text" id="brideLastName" name="brideLastName" required
+                                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition duration-200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GROOM Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">GROOM</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="groomFirstName"
+                                    class="block text-sm font-medium text-gray-700 mb-1 required-field">
+                                    First Name
+                                </label>
+                                <input type="text" id="groomFirstName" name="groomFirstName" required
+                                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition duration-200">
+                            </div>
+                            <div>
+                                <label for="groomLastName"
+                                    class="block text-sm font-medium text-gray-700 mb-1 required-field">
+                                    Last Name
+                                </label>
+                                <input type="text" id="groomLastName" name="groomLastName" required
+                                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition duration-200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WEDDING DATES Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">YOUR WEDDING DATES <span class="text-red-600">*</span></h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="weddingStartDate" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Start Date
+                                </label>
+                                <input type="date" id="weddingStartDate" name="weddingStartDate" required
+                                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition duration-200">
+                            </div>
+                            <div>
+                                <label for="weddingEndDate" class="block text-sm font-medium text-gray-700 mb-1">
+                                    End Date
+                                </label>
+                                <input type="date" id="weddingEndDate" name="weddingEndDate" required
+                                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition duration-200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EVENT DETAILS Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">EVENT DETAILS <span class="text-red-600">*</span></h2>
+                        <div>
+                            <label for="eventDetails" class="block text-sm font-medium text-gray-700 mb-1">
+                                What are the tentative events / functions / timings per day
+                            </label>
+                            <textarea id="eventDetails" name="eventDetails" rows="4" required
+                                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition duration-200"
+                                placeholder="Please provide details for each day of your wedding celebrations..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- VENUE Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">VENUE <span class="text-red-600">*</span></h2>
+                        <div>
+                            <label for="venue" class="block text-sm font-medium text-gray-700 mb-1">
+                                Please mention the hotel, city & the country
+                            </label>
+                            <textarea id="venue" name="venue" rows="3" required
+                                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition duration-200"
+                                placeholder="e.g., Taj Mahal Palace, Mumbai, India"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- CONTACT INFORMATION Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">CONTACT INFORMATION</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="contactNumber"
+                                    class="block text-sm font-medium text-gray-700 mb-1 required-field">
+                                    CONTACT NUMBER
+                                </label>
+                                <input type="tel" id="contactNumber" name="contactNumber" required
+                                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition duration-200"
+                                    placeholder="+91 9876543210">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1 required-field">
+                                    YOUR EMAIL
+                                </label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition duration-200"
+                                    placeholder="you@example.com">
+                            </div>
+                        </div>
+
+                        <!-- HOW DID YOU HEAR ABOUT US Section -->
+                        <div class="mt-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-1 required-field">
+                                HOW DID YOU HEAR ABOUT US?
+                            </label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="hearAbout[]" value="Instagram"> Instagram
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="hearAbout[]" value="Friend's Wedding"> Friend's Wedding
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="hearAbout[]" value="Magazine"> Magazine
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="hearAbout[]" value="Facebook"> Facebook
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="hearAbout[]" value="Through a relative / friend">
+                                    Through a
+                                    relative / friend
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Introduction text -->
+                    <div class="text-center py-4 border-t border-b border-gray-200 my-6">
+                        <p class="text-lg text-gray-700 italic">
+                            "Now that we have all the mandatory details, we are curious to know your story!"
+                        </p>
+                    </div>
+
+                    <!-- YOUR STORY Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">YOUR STORY</h2>
+                        <div>
+                            <p class="text-gray-600 mb-4">
+                                We are sticklers for stories and would love to hear yours! Tell us every little detail -
+                                Your first meeting, what was he / she wearing, how did he/she make you feel, what do you
+                                love about each other, how did you decide that he/she was the one etc.
+                            </p>
+                            <textarea id="yourStory" name="yourStory" rows="6"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition duration-200"
+                                placeholder="Share your beautiful love story with us..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- YOUR THOUGHTS Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">YOUR THOUGHTS</h2>
+                        <div>
+                            <p class="text-gray-600 mb-4">
+                                Let us inside your thoughts and tell us what you imagine your wedding film to be like?
+                                What
+                                kind of photos do you have in mind? Any dream destination or a place which is close to
+                                your
+                                heart where you would like to do your pre-wedding shoot? Also, if you have any
+                                suggestions
+                                for us, do let us know. We are all ears!
+                            </p>
+                            <textarea id="yourThoughts" name="yourThoughts" rows="6"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition duration-200"
+                                placeholder="Share your vision and ideas for your wedding photography and film..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center pt-6">
+                        <button type="submit" class="submit-btn heading-font text-lg">
+                            SUBMIT
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h3>Contact Us</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium">India</p>
+                                <p>+91 98200 37027</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium">USA</p>
+                                <p>74 Pleasant St, Westford MA 01886</p>
+                                <p>Boston, USA</p>
+                                <p>+1 617 517 5080</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium">EMAIL</p>
+                                <p>info@theweddingstory.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Form Submission Script -->
+    <script>
+        document.getElementById('weddingInquiryForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Basic validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('border-red-500');
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+
+            // Check at least one checkbox is selected for "How did you hear about us"
+            const checkboxes = this.querySelectorAll('input[name="hearAbout[]"]');
+            const atLeastOneChecked = Array.from(checkboxes).some(cb => cb.checked);
+
+            if (!atLeastOneChecked) {
+                isValid = false;
+                const checkboxGroup = this.querySelector('.checkbox-group');
+                checkboxGroup.classList.add('border', 'border-red-500', 'p-2', 'rounded');
+            } else {
+                const checkboxGroup = this.querySelector('.checkbox-group');
+                checkboxGroup.classList.remove('border', 'border-red-500', 'p-2', 'rounded');
+            }
+
+            if (isValid) {
+                // Show success message
+                alert('Thank you for sharing your story! We will contact you soon to discuss your wedding plans.');
+                this.reset();
+            } else {
+                alert('Please fill in all required fields marked with *.');
+            }
+        });
+
+        // Add today's date as min for wedding dates
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('weddingStartDate').min = today;
+        document.getElementById('weddingEndDate').min = today;
+    </script>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#f7f3ef] py-12 sm:py-14 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            <!-- Social Icons -->
+            <div class="flex justify-center space-x-6 mb-6 text-gray-700 text-lg">
+                <a href="#" aria-label="Instagram" class="hover:text-black transition-colors duration-200">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#" aria-label="YouTube" class="hover:text-black transition-colors duration-200">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="#" aria-label="Facebook" class="hover:text-black transition-colors duration-200">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+            </div>
+            <!-- Copyright -->
+            <p class="text-center text-xs sm:text-sm text-gray-600">
+                © 2026 Story Tree. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

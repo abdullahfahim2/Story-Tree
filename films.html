@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Films – The Wedding Story</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for optional icons (used in header) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #e9e4dd;
+            /* matches original warm tone */
+        }
+
+        .play-btn {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            transition: transform 0.2s ease, background 0.2s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .group:hover .play-btn {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* elegant overlay for title card – matches existing aesthetic */
+        .title-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(2px);
+            border-bottom: 2px solid rgba(180, 150, 130, 0.2);
+        }
+
+        /* subtle divider style */
+        .divider-light {
+            border-color: #c9bcad;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- HEADER (fixed, exactly as provided but with proper spacing) -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5 flex justify-between items-center">
+            <a href="index.html" class="heading-font text-white text-lg sm:text-xl md:text-2xl tracking-wide">Story
+                Tree</a>
+            <!-- Desktop Nav -->
+            <nav
+                class="hidden md:flex space-x-6 lg:space-x-8 text-xs lg:text-sm uppercase tracking-widest text-gray-300">
+                <a href="stories.html" class="hover:text-white transition-colors duration-200">Stories</a>
+                <a href="photobooks.html" class="hover:text-white transition-colors duration-200">Photobooks</a>
+                <a href="images.html" class="hover:text-white transition-colors duration-200">Images</a>
+                <a href="films.html" class="hover:text-white transition-colors duration-200">Films</a>
+                <a href="pre-weddings.html" class="hover:text-white transition-colors duration-200">Pre-Weddings</a>
+                <a href="package.html" class="hover:text-white transition-colors duration-200">Package</a>
+                <a href="faq.html" class="hover:text-white transition-colors duration-200">FAQ</a>
+                <a href="contact.html" class="hover:text-white transition-colors duration-200">Contact</a>
+            </nav>
+            <!-- Mobile Button -->
+            <button id="menuBtn" class="md:hidden text-white text-xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="hidden md:hidden bg-black/95 px-6 py-8 space-y-6 text-center text-sm uppercase tracking-widest">
+            <a href="stories.html" class="block hover:text-white transition-colors duration-200">Stories</a>
+            <a href="photobooks.html" class="block hover:text-white transition-colors duration-200">Photobooks</a>
+            <a href="images.html" class="block hover:text-white transition-colors duration-200">Images</a>
+            <a href="films.html" class="block hover:text-white transition-colors duration-200">Films</a>
+            <a href="pre-weddings.html" class="block hover:text-white transition-colors duration-200">Pre-Weddings</a>
+            <a href="package.html" class="block hover:text-white transition-colors duration-200">Package</a>
+            <a href="faq.html" class="block hover:text-white transition-colors duration-200">FAQ</a>
+            <a href="contact.html" class="block hover:text-white transition-colors duration-200">Contact</a>
+        </div>
+    </header>
+
+    <script>
+        (function () {
+            const menuBtn = document.getElementById("menuBtn");
+            const mobileMenu = document.getElementById("mobileMenu");
+            if (menuBtn) {
+                menuBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle("hidden");
+                });
+                document.addEventListener('click', (event) => {
+                    if (!menuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+        })();
+    </script>
+
+    <!-- MAIN CONTENT -->
+    <main class="pt-28 md:pt-32"> 
+
+        <!-- DIVIDER & TITLE -->
+        <div class="border-t divider-light max-w-5xl mx-auto"></div>
+        <section class="text-center py-12 md:py-14 px-4">
+            <h1 class="tracking-[0.6em] text-xl text-gray-600">INSTACUTS</h1>
+        </section>
+        <div class="border-t divider-light max-w-5xl mx-auto mb-10 md:mb-16"></div>
+
+        <!-- FILM GRID -->
+        <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-20 md:pb-28">
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+
+                <!-- FILM CARD 1 -->
+                <div class="group cursor-pointer" onclick="openVideo('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                    <div class="relative overflow-hidden rounded-sm shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop"
+                            alt="Wedding film Riddhima & Ashwin"
+                            class="w-full h-[340px] md:h-[360px] object-cover grayscale group-hover:grayscale-0 transition duration-700 ease-in-out">
+                        <!-- Play button – larger, refined -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div
+                                class="play-btn w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center text-red-800 text-3xl md:text-4xl shadow-2xl border border-white/30">
+                                ▶
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Title card with improved padding and typography -->
+                    <div class="title-card relative -mt-12 mx-4 py-5 px-2 text-center shadow-md rounded-sm">
+                        <h2 class="text-2xl md:text-3xl text-red-800 tracking-wide font-medium">RIDDHIMA & ASHWIN</h2>
+                        <p class="italic text-gray-500 text-sm md:text-base mt-1.5 tracking-wide">The Cold Coffee Edit
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FILM CARD 2 -->
+                <div class="group cursor-pointer" onclick="openVideo('https://www.youtube.com/embed/9bZkp7q19f0')">
+                    <div class="relative overflow-hidden rounded-sm shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1529634893366-3f1b7a6b4a12?q=80&w=2071&auto=format&fit=crop"
+                            alt="Wedding film Kushali & Abhishek"
+                            class="w-full h-[340px] md:h-[360px] object-cover grayscale group-hover:grayscale-0 transition duration-700 ease-in-out">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div
+                                class="play-btn w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center text-red-800 text-3xl md:text-4xl shadow-2xl border border-white/30">
+                                ▶
+                            </div>
+                        </div>
+                    </div>
+                    <div class="title-card relative -mt-12 mx-4 py-5 px-2 text-center shadow-md rounded-sm">
+                        <h2 class="text-2xl md:text-3xl text-red-800 tracking-wide font-medium">KUSHALI & ABHISHEK</h2>
+                        <p class="italic text-gray-500 text-sm md:text-base mt-1.5 tracking-wide">The Cold Coffee Edit
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Optional extra row to demonstrate consistent spacing – you could add more cards, but keeping original two for fidelity -->
+            <!-- However, to show professional padding, we add a subtle hint that more films could exist. 
+                 Not required, but helps visual balance. We'll keep minimal as original, just adjusted. -->
+        </section>
+
+        <!-- DIVIDER & TITLE -->
+        <div class="border-t divider-light max-w-5xl mx-auto"></div>
+        <section class="text-center py-12 md:py-14 px-4">
+            <h1 class="tracking-[0.6em] text-xl text-gray-600">TRAILERS</h1>
+        </section>
+        <div class="border-t divider-light max-w-5xl mx-auto mb-10 md:mb-16"></div>
+
+        <!-- FILM GRID -->
+        <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-20 md:pb-28">
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+
+                <!-- FILM CARD 1 -->
+                <div class="group cursor-pointer" onclick="openVideo('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                    <div class="relative overflow-hidden rounded-sm shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop"
+                            alt="Wedding film Riddhima & Ashwin"
+                            class="w-full h-[340px] md:h-[360px] object-cover grayscale group-hover:grayscale-0 transition duration-700 ease-in-out">
+                        <!-- Play button – larger, refined -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div
+                                class="play-btn w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center text-red-800 text-3xl md:text-4xl shadow-2xl border border-white/30">
+                                ▶
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Title card with improved padding and typography -->
+                    <div class="title-card relative -mt-12 mx-4 py-5 px-2 text-center shadow-md rounded-sm">
+                        <h2 class="text-2xl md:text-3xl text-red-800 tracking-wide font-medium">RIDDHIMA & ASHWIN</h2>
+                        <p class="italic text-gray-500 text-sm md:text-base mt-1.5 tracking-wide">The Cold Coffee Edit
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FILM CARD 2 -->
+                <div class="group cursor-pointer" onclick="openVideo('https://www.youtube.com/embed/9bZkp7q19f0')">
+                    <div class="relative overflow-hidden rounded-sm shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1529634893366-3f1b7a6b4a12?q=80&w=2071&auto=format&fit=crop"
+                            alt="Wedding film Kushali & Abhishek"
+                            class="w-full h-[340px] md:h-[360px] object-cover grayscale group-hover:grayscale-0 transition duration-700 ease-in-out">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div
+                                class="play-btn w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center text-red-800 text-3xl md:text-4xl shadow-2xl border border-white/30">
+                                ▶
+                            </div>
+                        </div>
+                    </div>
+                    <div class="title-card relative -mt-12 mx-4 py-5 px-2 text-center shadow-md rounded-sm">
+                        <h2 class="text-2xl md:text-3xl text-red-800 tracking-wide font-medium">KUSHALI & ABHISHEK</h2>
+                        <p class="italic text-gray-500 text-sm md:text-base mt-1.5 tracking-wide">The Cold Coffee Edit
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- VIDEO MODAL (same as original, but with fine-tuned z-index) -->
+    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-[100]">
+        <div class="relative w-11/12 md:w-3/4 lg:w-1/2">
+            <button onclick="closeVideo()"
+                class="absolute -top-10 right-0 text-white text-3xl hover:text-gray-300 transition">✕</button>
+            <iframe id="videoFrame" class="w-full aspect-video rounded shadow-2xl" src="" frameborder="0"
+                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- MODAL SCRIPT -->
+    <script>
+        function openVideo(url) {
+            const modal = document.getElementById('videoModal');
+            const frame = document.getElementById('videoFrame');
+            frame.src = url + "?autoplay=1&rel=0&showinfo=0";
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // prevent background scroll
+        }
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            const frame = document.getElementById('videoFrame');
+            frame.src = "";
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = ''; // restore scroll
+        }
+        // optional: click outside to close
+        document.getElementById('videoModal').addEventListener('click', function (e) {
+            if (e.target === this) closeVideo();
+        });
+    </script>
+
+</body>
+
+</html>
